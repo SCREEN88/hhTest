@@ -1,4 +1,4 @@
-package hh.price.selenium;
+package hh.price.selenium.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogType;

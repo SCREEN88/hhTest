@@ -1,4 +1,4 @@
-package hh.price.selenium;
+package hh.price.selenium.utils;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;

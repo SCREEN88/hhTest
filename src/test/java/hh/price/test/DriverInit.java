@@ -1,8 +1,8 @@
 package hh.price.test;
 
-import hh.price.selenium.DefaultProperties;
-import hh.price.selenium.SeleniumServerInit;
-import hh.price.selenium.WebDriverInit;
+import hh.price.selenium.utils.DefaultProperties;
+import hh.price.selenium.utils.SeleniumServerInit;
+import hh.price.selenium.utils.WebDriverInit;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 

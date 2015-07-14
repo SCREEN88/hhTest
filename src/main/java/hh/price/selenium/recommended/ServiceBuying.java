@@ -1,5 +1,7 @@
-package hh.price.selenium;
+package hh.price.selenium.recommended;
 
+import hh.price.selenium.utils.DefaultProperties;
+import hh.price.selenium.utils.WaitFor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.LoadableComponent;

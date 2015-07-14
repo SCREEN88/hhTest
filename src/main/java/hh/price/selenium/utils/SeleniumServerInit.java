@@ -1,4 +1,4 @@
-package hh.price.selenium;
+package hh.price.selenium.utils;
 
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;

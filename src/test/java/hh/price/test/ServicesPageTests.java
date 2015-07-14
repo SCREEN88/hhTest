@@ -1,6 +1,6 @@
 package hh.price.test;
 
-import hh.price.selenium.ServiceBuying;
+import hh.price.selenium.recommended.ServiceBuying;
 import org.testng.annotations.*;
 
 public class ServicesPageTests extends DriverInit{
