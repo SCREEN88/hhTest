@@ -1,0 +1,27 @@
+group 'hhTest'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+def seleniumVersion = "2+"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "com.typesafe:config:1.2.1"
+    compile "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    compile "org.seleniumhq.selenium:selenium-server:${seleniumVersion}"
+    testCompile('org.testng:testng:6.9.4') {
+        exclude module: "junit"
+    }
+}
+
+tasks.withType(Test) {
+    useTestNG()
+    systemProperty 'browser', (System.getProperty("browser") == null) ? "firefox" : System.getProperty("browser")
+    testLogging {
+        events 'started', 'passed'
+    }
+}
