@@ -17,6 +17,9 @@ public class ServiceBuying extends LoadableComponent<ServiceBuying> {
     @FindBy(css = ".m-colspan2 .price-spoffers__button button")
     public List<WebElement> formButtons;
 
+    @FindBy(css = "a[href='#dbaccess']")
+    private WebElement dbAccess;
+
     public ServiceBuying(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -45,5 +48,9 @@ public class ServiceBuying extends LoadableComponent<ServiceBuying> {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public void goToDbAccessTab() {
+        dbAccess.click();
     }
 }
