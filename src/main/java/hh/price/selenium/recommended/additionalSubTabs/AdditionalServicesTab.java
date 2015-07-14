@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import java.util.List;
+
 public class AdditionalServicesTab extends LoadableComponent<AdditionalServicesTab> implements IAdditionalTabs {
     private WebDriver driver;
 
@@ -28,7 +30,7 @@ public class AdditionalServicesTab extends LoadableComponent<AdditionalServicesT
     }
 
     public IAdditionalTabs selectSubTab(AdditionalServicesSubTabs tab){
-        WebElement subTab = driver.findElement(By.cssSelector(".g-switchrow span:nth-child(" + tab + ")"));
+        WebElement subTab = driver.findElement(By.cssSelector(".g-switchrow span:nth-child(" + tab.getTabNumber() + ")"));
         if (firstSubTabIsNotSelected(subTab)){
             subTab.click();
         }
@@ -56,5 +58,39 @@ public class AdditionalServicesTab extends LoadableComponent<AdditionalServicesT
         return !driver.findElement(By.cssSelector(".flat-tabs__body > li:nth-child(4)"))
             .getAttribute("class")
             .contains("g-expand");
+    }
+
+    public WebElement getInput(ResumeTypes type){
+        return getVacancyType(type).findElement(By.tagName("input"));
+    }
+
+    public WebElement getButton(ResumeTypes type){
+        return getVacancyType(type).findElement(By.tagName("button"));
+    }
+
+    public WebElement getCost(ResumeTypes type){
+        return getVacancyType(type).findElement(By.className("price-countable-service__cost"));
+    }
+
+    public List<WebElement> getFeatures(ResumeTypes type) {
+        return getVacancyType(type).findElements(By.cssSelector(".price-countable-service__features > li"));
+    }
+
+    private WebElement getVacancyType(ResumeTypes type) {
+        return driver.findElement(By.cssSelector(".g-expand .price-countable-service:nth-child(" + type.getValue() + ")"));
+    }
+
+    public enum ResumeTypes{
+        SPOTLIGHT(1), REGIONAL_SPOTLIGHT(2);
+
+        private int value;
+
+        ResumeTypes(int num) {
+            value = num;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }
