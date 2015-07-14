@@ -11,16 +11,13 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 
 import java.util.List;
 
-public class ServiceBuying extends LoadableComponent<ServiceBuying> {
+public class RecommendedTab extends LoadableComponent<RecommendedTab> {
     private WebDriver driver;
 
     @FindBy(css = ".m-colspan2 .price-spoffers__button button")
     public List<WebElement> formButtons;
 
-    @FindBy(css = "a[href='#dbaccess']")
-    private WebElement dbAccess;
-
-    public ServiceBuying(WebDriver driver) {
+    public RecommendedTab(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -46,11 +43,4 @@ public class ServiceBuying extends LoadableComponent<ServiceBuying> {
         return !driver.getCurrentUrl().contains(DefaultProperties.DATA.getString("selenium.testURL"));
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void goToDbAccessTab() {
-        dbAccess.click();
-    }
 }

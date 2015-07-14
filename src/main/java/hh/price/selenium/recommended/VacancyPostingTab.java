@@ -16,7 +16,7 @@ public class VacancyPostingTab extends LoadableComponent<VacancyPostingTab> {
 
     @Override
     protected void load() {
-        new ServiceBuying(driver).get();
+        new RecommendedTab(driver).get();
         driver.findElement(By.cssSelector("a[href='#publications']"));
     }
 
