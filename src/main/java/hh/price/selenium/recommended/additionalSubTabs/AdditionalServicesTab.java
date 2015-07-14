@@ -1,0 +1,60 @@
+package hh.price.selenium.recommended.additionalSubTabs;
+
+import hh.price.selenium.recommended.RecommendedTab;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.LoadableComponent;
+
+public class AdditionalServicesTab extends LoadableComponent<AdditionalServicesTab> implements IAdditionalTabs {
+    private WebDriver driver;
+
+    public AdditionalServicesTab(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    @Override
+    protected void load() {
+        new RecommendedTab(driver).get();
+        driver.findElement(By.cssSelector("a[href='#additional']")).click();
+        selectSubTab(AdditionalServicesSubTabs.RESUME_SPOTLIGHT);
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        if (wrongStartUrl() && tabIsNotVisible()) {
+            throw new Error();
+        }
+    }
+
+    public IAdditionalTabs selectSubTab(AdditionalServicesSubTabs tab){
+        WebElement subTab = driver.findElement(By.cssSelector(".g-switchrow span:nth-child(" + tab + ")"));
+        if (firstSubTabIsNotSelected(subTab)){
+            subTab.click();
+        }
+        switch (tab){
+            case ADVERTISING_ON_THE_SITE:
+                return new AdvertisingOnTheSiteTab(driver);
+            case PERSONAL_IN_THE_BALTIC_STATES:
+                return new PersonalInTheBalticTab(driver);
+            case COMPANY_PROMOTION:
+                return new CompanyPromotionTab(driver);
+            default:
+                return this;
+        }
+    }
+
+    private boolean firstSubTabIsNotSelected(WebElement subTab) {
+        return !subTab.getAttribute("class").contains("m-switchrow__switch_selected");
+    }
+
+    private boolean wrongStartUrl() {
+        return !driver.getCurrentUrl().contains("#additional");
+    }
+
+    private boolean tabIsNotVisible() {
+        return !driver.findElement(By.cssSelector(".flat-tabs__body > li:nth-child(4)"))
+            .getAttribute("class")
+            .contains("g-expand");
+    }
+}
