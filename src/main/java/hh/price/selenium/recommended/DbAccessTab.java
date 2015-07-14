@@ -1,6 +1,5 @@
 package hh.price.selenium.recommended;
 
-import hh.price.selenium.utils.WaitFor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +11,10 @@ import java.util.List;
 
 public class DbAccessTab extends LoadableComponent<DbAccessTab> {
     private WebDriver        driver;
+
+    @FindBy(css = "a[href='#dbaccess']")
+    private WebElement dbAccess;
+
     //"//div[@class='price-resume-access__periods'][2]//label"
     @FindBy(css = ".price-resume-access__periods input[type='radio']")
     public List<WebElement> allRadioButton;
@@ -44,23 +47,25 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
 
     @Override
     protected void load() {
-        new ServiceBuying(driver).get().goToDbAccessTab();
+        new RecommendedTab(driver).get();
+        dbAccess.click();
     }
 
     @Override
     protected void isLoaded() throws Error {
-        if (wrongStartUrl()) {
+        if (wrongStartUrl() && tabIsNotVisible()) {
             throw new Error();
         }
-        new WaitFor(driver).elementToAppear(By.className("price-resume-access"));
     }
 
     private boolean wrongStartUrl() {
         return !driver.getCurrentUrl().contains("#dbaccess");
     }
 
-    public WebDriver getDriver() {
-        return driver;
+    private boolean tabIsNotVisible() {
+        return !driver.findElement(By.cssSelector(".flat-tabs__body > li:nth-child(2)"))
+            .getAttribute("class")
+            .contains("g-expand");
     }
 }
 
