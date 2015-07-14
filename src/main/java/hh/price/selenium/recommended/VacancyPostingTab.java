@@ -45,6 +45,10 @@ public class VacancyPostingTab extends LoadableComponent<VacancyPostingTab> {
         return getVacancyType(type).findElement(By.tagName("button"));
     }
 
+    public WebElement getCost(VacancyType type){
+        return getVacancyType(type).findElement(By.className("price-countable-service__cost"));
+    }
+
     public List<WebElement> getDiscountPrices(VacancyType type) {
         return getVacancyType(type).findElements(By.className("HH-Price-CountableService-DiscountRate"));
     }
