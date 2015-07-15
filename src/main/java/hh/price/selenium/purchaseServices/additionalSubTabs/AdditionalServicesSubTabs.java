@@ -1,4 +1,4 @@
-package hh.price.selenium.recommended.additionalSubTabs;
+package hh.price.selenium.purchaseServices.additionalSubTabs;
 
 public enum AdditionalServicesSubTabs {
     RESUME_SPOTLIGHT(1),

@@ -1,4 +1,4 @@
-package hh.price.selenium.recommended;
+package hh.price.selenium.purchaseServices;
 
 import hh.price.selenium.utils.DefaultProperties;
 import hh.price.selenium.utils.WaitFor;

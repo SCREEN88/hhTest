@@ -1,9 +1,9 @@
 package hh.price.test;
 
-import hh.price.selenium.recommended.PriceCart;
-import hh.price.selenium.recommended.additionalSubTabs.AdditionalServicesSubTabs;
-import hh.price.selenium.recommended.additionalSubTabs.AdditionalServicesTab;
-import hh.price.selenium.recommended.additionalSubTabs.CompanyPromotionTab;
+import hh.price.selenium.purchaseServices.PriceCart;
+import hh.price.selenium.purchaseServices.additionalSubTabs.AdditionalServicesSubTabs;
+import hh.price.selenium.purchaseServices.additionalSubTabs.AdditionalServicesTab;
+import hh.price.selenium.purchaseServices.additionalSubTabs.CompanyPromotionTab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

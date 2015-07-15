@@ -1,4 +1,4 @@
-package hh.price.selenium.recommended.additionalSubTabs;
+package hh.price.selenium.purchaseServices.additionalSubTabs;
 
 import org.openqa.selenium.WebDriver;
 

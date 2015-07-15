@@ -1,6 +1,6 @@
-package hh.price.selenium.recommended.additionalSubTabs;
+package hh.price.selenium.purchaseServices.additionalSubTabs;
 
-import hh.price.selenium.recommended.RecommendedTab;
+import hh.price.selenium.purchaseServices.RecommendedTab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

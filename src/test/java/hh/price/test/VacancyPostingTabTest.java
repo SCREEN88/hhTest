@@ -1,8 +1,8 @@
 package hh.price.test;
 
-import hh.price.selenium.recommended.PriceCart;
-import hh.price.selenium.recommended.VacancyPostingTab;
-import hh.price.selenium.recommended.VacancyType;
+import hh.price.selenium.purchaseServices.PriceCart;
+import hh.price.selenium.purchaseServices.VacancyPostingTab;
+import hh.price.selenium.purchaseServices.VacancyType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -45,7 +45,9 @@ public class VacancyPostingTabTest extends DriverInit{
         for (VacancyType type : VacancyType.values()) {
             for (WebElement links : vpTab.getDiscountPrices(type)) {
                 links.click();
-                int amount = Integer.parseInt(links.findElement(By.className("price-countable-service__rate-amount")).getText().replace(" ", ""));
+                int amount = Integer.parseInt(links.findElement(By.className("price-countable-service__rate-amount")).getText().replace(
+                    " ",
+                    ""));
                 int cost = Integer.parseInt(links.findElement(By.className("price-countable-service__rate-cost")).getText().replace(" ", ""));
                 int totalCost = Integer.parseInt(vpTab.getCost(type).getText().replace("руб.", "").replace(" ", ""));
                 int inputVal = Integer.parseInt(vpTab.getInput(type).getAttribute("value"));

@@ -1,4 +1,4 @@
-package hh.price.selenium.recommended;
+package hh.price.selenium.purchaseServices;
 
 import com.google.common.collect.Lists;
 import org.openqa.selenium.By;

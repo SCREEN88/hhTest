@@ -1,7 +1,7 @@
 package hh.price.test;
 
-import hh.price.selenium.recommended.DbAccessTab;
-import hh.price.selenium.recommended.PriceCart;
+import hh.price.selenium.purchaseServices.DbAccessTab;
+import hh.price.selenium.purchaseServices.PriceCart;
 import hh.price.selenium.utils.WaitFor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

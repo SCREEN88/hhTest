@@ -1,4 +1,4 @@
-package hh.price.selenium.recommended;
+package hh.price.selenium.purchaseServices;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

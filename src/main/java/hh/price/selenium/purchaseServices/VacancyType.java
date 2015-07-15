@@ -1,4 +1,4 @@
-package hh.price.selenium.recommended;
+package hh.price.selenium.purchaseServices;
 
 public enum VacancyType {
     STANDART(1, "Стандарт"),
