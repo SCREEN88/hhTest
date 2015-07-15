@@ -28,8 +28,7 @@ public class DbAccessTabTests extends DriverInit {
     public void changeRegion() {
         DbAccessTab dbTab = new DbAccessTab(getDriver()).get();
         dbTab.changeRegion.click();
-        new WaitFor(getDriver()).elementToAppear(By.className("b-popup"));
-        WebElement popup = getDriver().findElement(By.className("b-popup"));
+        WebElement popup = getPopup();
         List<WebElement> checkBoxes = popup.findElements(By.className("price-resume-access__part-item"));
         ArrayList<String> regions = new ArrayList<>();
         regions.add(checkBoxes.get(1).getText());
@@ -43,5 +42,35 @@ public class DbAccessTabTests extends DriverInit {
         for (String region : regions) {
             assert selected.contains(region);
         }
+    }
+
+    @Test
+    public void changeProfession() {
+        DbAccessTab dbTab = new DbAccessTab(getDriver()).get();
+        dbTab.changeRegion.click();
+        WebElement regionPopup = getPopup();
+        List<WebElement> regionCheckBoxes = regionPopup.findElements(By.className("price-resume-access__part-item"));
+        regionCheckBoxes.get(0).click();
+        regionPopup.findElement(By.className("bloko-button")).click();
+        dbTab.changeIndustry.click();
+        WebElement industryPopup = getPopup();
+        List<WebElement> industryCheckBoxes = industryPopup.findElements(By.className("price-resume-access__part-item"));
+        ArrayList<String> industries = new ArrayList<>();
+        industries.add(industryCheckBoxes.get(1).getText());
+        industryCheckBoxes.get(1).click();
+        industries.add(industryCheckBoxes.get(5).getText());
+        industryCheckBoxes.get(5).click();
+        industries.add(industryCheckBoxes.get(9).getText());
+        industryCheckBoxes.get(9).click();
+        industryPopup.findElement(By.className("bloko-button")).click();
+        String selected = dbTab.selectedValues.get(1).getText();
+        for (String industry : industries) {
+            assert selected.contains(industry);
+        }
+    }
+
+    private WebElement getPopup() {
+        new WaitFor(getDriver()).elementToAppear(By.className("b-popup"));
+        return getDriver().findElement(By.className("b-popup"));
     }
 }

@@ -34,7 +34,7 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
     @FindBy(css = ".HH-Price-ResumeAccess-Region .link-switch")
     public WebElement changeRegion;
 
-    @FindBy(css = ".price-resume-access__change-item:nth-child(2)")
+    @FindBy(className = "HH-Price-ResumeAccess-ChangeProfArea")
     public WebElement changeIndustry;
 
     @FindBy(className = "price-resume-access__part-item-selected")
