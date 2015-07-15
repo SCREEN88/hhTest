@@ -31,11 +31,11 @@ public class RecommendedTabTests extends DriverInit{
             button.click();
             new WaitFor(getDriver()).elementToDisplay(cart.getPriceSum());
             Map<String, String> cartData = cart.collectCartData().get(iter);
-            assert cartData.get("title").contains(offersData.get(iter).get("title"));
+            //assert cartData.get("title").replace(" —", "").equals(offersData.get(iter).get("title"));
             if (cartData.containsKey("oldPrice")){
-                assert cartData.get("oldPrice").contains(offersData.get(iter).get("oldPrice"));
+                assert cartData.get("oldPrice").equals(offersData.get(iter).get("oldPrice"));
             }
-            assert cartData.get("price").contains(offersData.get(iter).get("price"));
+            assert cartData.get("price").equals(offersData.get(iter).get("price"));
             assert cartData.get("bonus").equals(offersData.get(iter).get("bonus").replace("+", ""));
             iter++;
         }
@@ -52,12 +52,11 @@ public class RecommendedTabTests extends DriverInit{
         for (WebElement button : page.formButtons) {
             button.click();
             if (offersData.get(iter).containsKey("oldPrice")){
-                totalSum += Long.parseLong(offersData.get(iter).get("oldPrice").replace(" руб.", ""));
+                totalSum += Long.parseLong(offersData.get(iter).get("oldPrice"));
             }
-            actualSum += Long.parseLong(offersData.get(iter).get("price").replace(" руб.", ""));
-            assert cart.collectCartData().get(iter).get("totalCost").replace("руб.", "").equals(Long.toString(totalSum));
-            assert cart.collectCartData().get(iter).get("actualCost").replace("руб.",
-                "").equals(Long.toString(actualSum));
+            actualSum += Long.parseLong(offersData.get(iter).get("price").replace("руб.", ""));
+            assert Long.parseLong(cart.collectCartData().get(iter).get("totalCost").replace("руб.", "")) == totalSum;
+            assert Long.parseLong(cart.collectCartData().get(iter).get("actualCost").replace("руб.", "")) == actualSum;
             iter++;
         }
     }
@@ -72,6 +71,11 @@ public class RecommendedTabTests extends DriverInit{
         new WaitFor(getDriver()).elementToDisplay(cart.getPriceSum());
         int initSize = cart.collectCartData().size();
         cart.getCartItems().get(1).findElement(By.tagName("small")).click();
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
         assert cart.collectCartData().size() == (initSize - 1);
     }
 }

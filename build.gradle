@@ -18,10 +18,19 @@ dependencies {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 tasks.withType(Test) {
     useTestNG()
     systemProperty 'browser', (System.getProperty("browser") == null) ? "firefox" : System.getProperty("browser")
     testLogging {
         events 'started', 'passed'
     }
+}
+
+task runAllTests(type: Test){
+    include 'hh/price/test/**'
+    //exclude 'ru/agent/selenium/test/runner/**'
 }

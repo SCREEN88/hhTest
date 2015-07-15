@@ -58,7 +58,7 @@ public class RecommendedTab extends LoadableComponent<RecommendedTab> {
             if (oldPrice.size() > 0){
                 data.put("oldPrice", oldPrice.get(0).getText());
             }
-            data.put("price", offer.findElement(By.className("price-spoffers__actual-price")).getText());
+            data.put("price", offer.findElement(By.className("price-spoffers__actual-price")).getText().replace(" ", ""));
             data.put("bonus", offer.findElement(By.className("price-spoffers__special-offer-plus")).getText());
             list.add(data);
         }

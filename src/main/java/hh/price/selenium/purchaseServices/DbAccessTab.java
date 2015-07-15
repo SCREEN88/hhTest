@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import java.util.List;
 
 public class DbAccessTab extends LoadableComponent<DbAccessTab> {
-    private WebDriver        driver;
+    private WebDriver driver;
 
     @FindBy(css = "a[href='#dbaccess']")
     private WebElement dbAccess;
@@ -34,11 +34,17 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
     @FindBy(css = ".HH-Price-ResumeAccess-Region .link-switch")
     public WebElement changeRegion;
 
+    @FindBy(className = "HH-Price-ResumeAccess-RegionList")
+    public WebElement regionValues;
+
     @FindBy(className = "HH-Price-ResumeAccess-ChangeProfArea")
     public WebElement changeIndustry;
 
     @FindBy(className = "price-resume-access__part-item-selected")
     public List<WebElement> selectedValues;
+
+    @FindBy(className = "HH-Price-ResumeAccess-ProfAreaList")
+    public WebElement industryValues;
 
     @FindBy(css = ".price-resume-access__summary label")
     public WebElement summeryLabel;

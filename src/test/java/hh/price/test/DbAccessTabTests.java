@@ -40,7 +40,7 @@ public class DbAccessTabTests extends DriverInit {
         regions.add(checkBoxes.get(98).getText());
         checkBoxes.get(98).click();
         popup.findElement(By.className("bloko-button")).click();
-        String selected = dbTab.selectedValues.get(0).getText();
+        String selected = dbTab.regionValues.getText();
         for (String region : regions) {
             assert selected.contains(region);
         }
@@ -65,7 +65,7 @@ public class DbAccessTabTests extends DriverInit {
         industries.add(industryCheckBoxes.get(9).getText());
         industryCheckBoxes.get(9).click();
         industryPopup.findElement(By.className("bloko-button")).click();
-        String selected = dbTab.selectedValues.get(1).getText();
+        String selected = dbTab.industryValues.getText();
         for (String industry : industries) {
             assert selected.contains(industry);
         }

@@ -32,9 +32,9 @@ public class PriceCart {
         for (WebElement offer : getCartItems()) {
             HashMap<String, String> data = new HashMap<>();
             data.put("title", offer.findElement(By.className("price-cart__item-title")).getText());
-            List<WebElement> oldPrice = offer.findElements(By.className("price-cart__old-cost"));
-            if (oldPrice.size() > 0){
-                data.put("oldPrice", oldPrice.get(0).getText());
+            WebElement oldPrice = offer.findElement(By.className("price-cart__old-cost"));
+            if (oldPrice.getText().length() > 0){
+                data.put("oldPrice", oldPrice.getText().replace(" ", ""));
             }
             data.put("price", offer.findElement(By.className("price-cart__actual-cost")).getText().replace(" ", ""));
             data.put("totalCost", priceSum.findElement(By.className("price-cart__total-old-cost")).getText().replace(" ", ""));
