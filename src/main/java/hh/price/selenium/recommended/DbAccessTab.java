@@ -16,7 +16,7 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
     private WebElement dbAccess;
 
     //"//div[@class='price-resume-access__periods'][2]//label"
-    @FindBy(css = ".price-resume-access__periods input[type='radio']")
+    @FindBy(css = ".price-resume-access__periods .price-resume-access__part-item")
     public List<WebElement> allRadioButton;
 
     @FindBy(css = ".price-resume-access__periods .HH-Price-ResumeAccess-Period_short")
@@ -28,7 +28,7 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
     @FindBy(css = ".price-resume-access__periods .HH-Price-ResumeAccess-Period_long")
     public WebElement regularSelectionRadio;
 
-    @FindBy(css = ".HH-Price-ResumeAccess-Cost")
+    @FindBy(className = "price-spoffers-item__cost")
     public WebElement costSummery;
 
     @FindBy(css = ".price-resume-access__change-item:nth-child(1)")
@@ -68,4 +68,3 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
             .contains("g-expand");
     }
 }
-

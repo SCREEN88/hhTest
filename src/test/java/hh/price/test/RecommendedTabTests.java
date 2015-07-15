@@ -11,11 +11,6 @@ import java.util.Map;
 
 public class RecommendedTabTests extends DriverInit{
 
-    @BeforeTest(description = "Загрузка страницы", enabled = false)
-    public void firstTest() {
-        RecommendedTab page = new RecommendedTab(getDriver()).get();
-    }
-
     @Test
     public void buttonDisabledTest(){
         RecommendedTab page = new RecommendedTab(getDriver()).get();
