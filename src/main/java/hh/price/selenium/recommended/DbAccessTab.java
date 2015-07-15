@@ -31,11 +31,14 @@ public class DbAccessTab extends LoadableComponent<DbAccessTab> {
     @FindBy(className = "price-spoffers-item__cost")
     public WebElement costSummery;
 
-    @FindBy(css = ".price-resume-access__change-item:nth-child(1)")
+    @FindBy(css = ".HH-Price-ResumeAccess-Region .link-switch")
     public WebElement changeRegion;
 
     @FindBy(css = ".price-resume-access__change-item:nth-child(2)")
     public WebElement changeIndustry;
+
+    @FindBy(className = "price-resume-access__part-item-selected")
+    public List<WebElement> selectedValues;
 
     @FindBy(css = ".price-resume-access__summary label")
     public WebElement summeryLabel;
