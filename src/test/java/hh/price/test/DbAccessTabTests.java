@@ -1,6 +1,7 @@
 package hh.price.test;
 
 import hh.price.selenium.recommended.DbAccessTab;
+import hh.price.selenium.recommended.PriceCart;
 import hh.price.selenium.utils.WaitFor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,7 @@ import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DbAccessTabTests extends DriverInit {
 
@@ -72,5 +74,18 @@ public class DbAccessTabTests extends DriverInit {
     private WebElement getPopup() {
         new WaitFor(getDriver()).elementToAppear(By.className("b-popup"));
         return getDriver().findElement(By.className("b-popup"));
+    }
+
+    @Test
+    public void addSelectedToCart(){
+        DbAccessTab dbTab = new DbAccessTab(getDriver()).get();
+        WebElement selected = dbTab.allRadioButton.get(4);
+        String value = selected.findElement(By.tagName("span")).getText().replace("руб.", "").replace(" ", "");
+        selected.click();
+        getDriver().findElement(By.className("HH-Price-ResumeAccess-AddToCartButton")).click();
+        PriceCart cart = new PriceCart(getDriver().findElement(By.className("HH-PriceCart")));
+        new WaitFor(getDriver()).elementToDisplay(cart.getPriceSum());
+        List<Map<String,String>> cartData = cart.collectCartData();
+        assert cartData.get(0).get("actualCost").equals(value);
     }
 }
