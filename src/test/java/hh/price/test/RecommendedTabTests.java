@@ -2,6 +2,7 @@ package hh.price.test;
 
 import hh.price.selenium.recommended.PriceCart;
 import hh.price.selenium.recommended.RecommendedTab;
+import hh.price.selenium.utils.WaitFor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
@@ -28,6 +29,7 @@ public class RecommendedTabTests extends DriverInit{
         int iter = 0;
         for (WebElement button : page.formButtons) {
             button.click();
+            new WaitFor(getDriver()).elementToDisplay(cart.getPriceSum());
             Map<String, String> cartData = cart.collectCartData().get(iter);
             assert cartData.get("title").contains(offersData.get(iter).get("title"));
             if (cartData.containsKey("oldPrice")){
@@ -54,8 +56,22 @@ public class RecommendedTabTests extends DriverInit{
             }
             actualSum += Long.parseLong(offersData.get(iter).get("price").replace(" руб.", ""));
             assert cart.collectCartData().get(iter).get("totalCost").replace("руб.", "").equals(Long.toString(totalSum));
-            assert cart.collectCartData().get(iter).get("actualCost").replace("руб.", "").equals(Long.toString(actualSum));
+            assert cart.collectCartData().get(iter).get("actualCost").replace("руб.",
+                "").equals(Long.toString(actualSum));
             iter++;
         }
+    }
+
+    @Test
+    public void removeElementFromCart(){
+        RecommendedTab page = new RecommendedTab(getDriver()).get();
+        PriceCart cart = new PriceCart(getDriver().findElement(By.className("HH-PriceCart")));
+        for (WebElement button : page.formButtons) {
+            button.click();
+        }
+        new WaitFor(getDriver()).elementToDisplay(cart.getPriceSum());
+        int initSize = cart.collectCartData().size();
+        cart.getCartItems().get(1).findElement(By.tagName("small")).click();
+        assert cart.collectCartData().size() == (initSize - 1);
     }
 }
