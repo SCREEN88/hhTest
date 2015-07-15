@@ -1,20 +1,23 @@
 package hh.price.test;
 
 import hh.price.selenium.recommended.PriceCart;
+import hh.price.selenium.recommended.additionalSubTabs.AdditionalServicesSubTabs;
 import hh.price.selenium.recommended.additionalSubTabs.AdditionalServicesTab;
+import hh.price.selenium.recommended.additionalSubTabs.CompanyPromotionTab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 
 import java.util.*;
 
-public class AdditionalServicesTests extends DriverInit{
+public class AdditionalServicesTests extends DriverInit {
 
     @Test
-    public void addToCart(){
+    public void addToCart() {
         AdditionalServicesTab adTab = new AdditionalServicesTab(getDriver()).get();
         PriceCart cart = new PriceCart(getDriver().findElement(By.className("HH-PriceCart")));
-        ArrayList<Map<String,String>> list = new ArrayList<>();
+        ArrayList<Map<String, String>> list = new ArrayList<>();
         for (AdditionalServicesTab.ResumeTypes type : AdditionalServicesTab.ResumeTypes.values()) {
             HashMap<String, String> mp = new HashMap<>();
             mp.put("pcs", Integer.toString(new Random().nextInt(100)));
@@ -35,4 +38,14 @@ public class AdditionalServicesTests extends DriverInit{
         assert sum == Long.parseLong(cartData.get(0).get("actualCost"));
     }
 
+    @Test
+    public void accordionLinks() {
+        CompanyPromotionTab adTab = (CompanyPromotionTab) new AdditionalServicesTab(getDriver()).get()
+            .selectSubTab(AdditionalServicesSubTabs.COMPANY_PROMOTION);
+        for (WebElement accordion : adTab.accordions) {
+            accordion.findElement(By.cssSelector("dt > a")).click();
+            assert accordion.findElement(By.tagName("dt")).getAttribute("class").contains("b-accordion__item_current");
+            assert accordion.findElement(By.tagName("dd")).isDisplayed();
+        }
+    }
 }
