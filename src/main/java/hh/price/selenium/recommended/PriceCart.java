@@ -39,7 +39,9 @@ public class PriceCart {
             data.put("price", offer.findElement(By.className("price-cart__actual-cost")).getText().replace(" ", ""));
             data.put("totalCost", priceSum.findElement(By.className("price-cart__total-old-cost")).getText().replace(" ", ""));
             data.put("actualCost", priceSum.findElement(By.className("HH-PriceCart-TotalCost-Actual")).getText().replace(" ", ""));
-            data.put("bonus", gifts.get(iter).getText());
+            if (gifts.size() > 0){
+                data.put("bonus", gifts.get(iter).getText());
+            }
             list.add(data);
         }
         return list;
