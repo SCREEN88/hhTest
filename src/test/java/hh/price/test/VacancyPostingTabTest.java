@@ -5,6 +5,7 @@ import hh.price.selenium.recommended.VacancyPostingTab;
 import hh.price.selenium.recommended.VacancyType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 
 import java.util.*;
@@ -36,5 +37,21 @@ public class VacancyPostingTabTest extends DriverInit{
             iter++;
         }
         assert sum == Long.parseLong(cartData.get(0).get("actualCost"));
+    }
+
+    @Test
+    public void discountLinksCheck(){
+        VacancyPostingTab vpTab = new VacancyPostingTab(getDriver()).get();
+        for (VacancyType type : VacancyType.values()) {
+            for (WebElement links : vpTab.getDiscountPrices(type)) {
+                links.click();
+                int amount = Integer.parseInt(links.findElement(By.className("price-countable-service__rate-amount")).getText().replace(" ", ""));
+                int cost = Integer.parseInt(links.findElement(By.className("price-countable-service__rate-cost")).getText().replace(" ", ""));
+                int totalCost = Integer.parseInt(vpTab.getCost(type).getText().replace("руб.", "").replace(" ", ""));
+                int inputVal = Integer.parseInt(vpTab.getInput(type).getAttribute("value"));
+                assert inputVal == amount;
+                assert totalCost == (cost * amount);
+            }
+        }
     }
 }
